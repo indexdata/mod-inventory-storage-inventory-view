@@ -301,7 +301,7 @@ public class InstanceRepository extends AbstractRepository<Instance> {
     sql.append("FROM ");
     sql.append(postgresClientFuturized.getFullTableName(INSTANCE_HOLDINGS_ITEM_VIEW));
     sql.append(" AS inventory_view ");
-    sql.append("WHERE inventory_view.instance_hrid = $1 ");
+    sql.append("WHERE lower(f_unaccent(inventory_view.instance_hrid)) = $1 ");
     sql.append("LIMIT ").append(limit).append(" OFFSET ").append(offset);
     return sql.toString();
   }
